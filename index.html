@@ -1,5 +1,64 @@
-<html>
-<h1> This is my first page with GitHub Pages </h1>
-<p>Thanks GitHub!</p>
-<p>Created by Mohamed Alwahaibi for MIT Introduction to GitHub Assignment </p>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #282c34;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        #countdown {
+            font-size: 10em;
+            margin-top: 20%;
+        }
+
+        #label {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="label">Time remaining until 11:00 PM Muscat time, November 18th, 2024:</div>
+    <div id="countdown"></div>
+
+    <script>
+        // Set the target date and time (Muscat timezone is UTC +4)
+        const targetDate = new Date('2024-11-18T23:00:00+04:00');
+
+        // Update the countdown every second
+        function updateCountdown() {
+            const now = new Date();
+            const remainingTime = targetDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+            // Display the result in the countdown div
+            document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            // If the countdown has finished, display a message
+            if (remainingTime <= 0) {
+                document.getElementById('countdown').innerHTML = "The time has arrived!";
+            }
+        }
+
+        // Initial call to update the countdown
+        updateCountdown();
+
+        // Update the countdown every 1 second
+        setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
 </html>
